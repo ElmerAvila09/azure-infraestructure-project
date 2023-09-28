@@ -117,11 +117,11 @@ After step 12, you will have your full infrastructure deployed, ready to use, an
 ----------
 - In the present example, 2 Virtual Machines were created, but you should have as many as you define.
 
-![VM](out_img/vms.png)
+![VM](out_img/VMs.png)
 
 -----
 - Also, here is how your Network Security Group should look:
 
-![NSG](out_img/nsg.png)
+![NSG](out_img/NSG.png)
 
 
