@@ -107,16 +107,16 @@ After step 12, you will have your full infrastructure deployed, ready to use, an
 ![Resource Group](out_img/resource_group.png)
 
 
-![Resource Group](https://drive.google.com/file/d/16ZCEwTU-PpaTf15U8tLl6t3X-sE_cDUm/view?usp=drive_link)
+![Resource Group](out_img/resource_group1.png)
 
 ----------
 - In the present example, 2 Virtual Machines were created, but you should have as many as you define.
 
-![VM](https://drive.google.com/file/d/169P4-Zj4DNuy9jqSd-NoZMBBcujtn_Dg/view?usp=drive_link)
+![VM](out_img/VMs.png)
 
 -----
 - Also, here is how your Network Security Group should look:
 
-![NSG](https://drive.google.com/file/d/1JIzRbwVMkshdN7l8owucAmgCK-MBuhH5/view?usp=drive_link)
+![NSG](out_img/NSG.png)
 
 
