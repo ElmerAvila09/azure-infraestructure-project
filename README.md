@@ -49,15 +49,18 @@ az policy assignment create --name tagging-policy --policy tagging-policy
 ```
 
 4. Create a Resource Group to store your Packer images. Execute the following command:
+    - You can replace the `location` with your desired location.  
+
 ```sh
 az group create --name Azuredevops --location westeurope --tags "application=webserver"
 ```
 
-5. To be able to build the Packer image, configure the `server.json` file with your Azure credentials. Specifically, you should provide values for the variables `client_id`, `client_secret`, and `subscription_id`, which can be obtained from your Azure Portal with the corresponding names:
+5. To be able to build the Packer image, configure the `server.json` file with your Azure credentials. Specifically, you should provide values for the variables `client_id`, `client_secret`, `subscription_id`, and `location`, which can be obtained from your Azure Portal with the corresponding names:
 
     - `client_id` = Application Id
     - `client_secret` = Secret Key 
     - `subscription_id` = Subscription Id
+    - `location` = Location used in step 4.
 
 6. Run the following command to build the custom image for the Virtual Machines.
 ```sh
@@ -69,20 +72,20 @@ packer build server.json
 terraform init
 ```
 
-8. To use the custom image and resource group we previously created, we need to import the resource. Run the following command:
+8. **(OPTIONAL)** To customize your deployment, you can modify the default values of variables within the `variables.tf` file. This allows you to tailor specific parameters to your preferences. Variables you can adjust include:
+
+- `count_vm`: To set the number of Virtual Machines to be created.
+- `location`: To set the desired deployment location for your Azure resources.
+- `password`: To specify the password for the Virtual Machines.
+- `username`: To specify the username for the Virtual Machines.
+
+9. To use the custom image and resource group we previously created, we need to import the resource group. Run the following command:
 
     - Don't forget to replace `<subscription_id>` with your Subscription Id  
 
 ```sh
 terraform import azurerm_resource_group.Azuredevops /subscriptions/<subscription_id>/resourceGroups/Azuredevops
 ```
-
-9. **(OPTIONAL)** To customize your deployment, you can modify the default values of variables within the `variables.tf` file. This allows you to tailor specific parameters to your preferences. Variables you can adjust include:
-
-- `count`: To set the number of Virtual Machines to be created.
-- `location`: To set the desired location for your Azure resources.
-- `password`: To specify the password for the Virtual Machines.
-- `username`: To specify the username for the Virtual Machines.
 
 10. To create an execution plan and save it as well as analyze the changes to be applied run the following command:
 ```sh
@@ -103,21 +106,22 @@ terraform destroy
 ### Outputs
 After step 12, you will have your full infrastructure deployed, ready to use, and it should resemble something like this:
 
+**Apply Output:** Here is what the successful apply output should look like in your CLI:
+
+![Resource Group](apply_output.png)
+
  **Resources Group:** Here you can see all the resources that were created, such as Virtual Machines, Load Balancer, Network Interfaces, Public IP Address, Virtual Network, Availability Set, Custom Image, and Disks.
 
-![Resource Group](out_img/resource_group.png)
-
-
-![Resource Group](out_img/resource_group1.png)
+![Resource Group](out_img/rsg.png)
 
 ----------
 - In the present example, 2 Virtual Machines were created, but you should have as many as you define.
 
-![VM](out_img/VMs.png)
+![VM](out_img/vms.png)
 
 -----
 - Also, here is how your Network Security Group should look:
 
-![NSG](out_img/NSG.png)
+![NSG](out_img/nsg.png)
 
 
