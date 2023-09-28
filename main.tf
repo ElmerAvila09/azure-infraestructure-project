@@ -132,7 +132,7 @@ resource "azurerm_lb_backend_address_pool" "main" {
 
 # Create NIC
 resource "azurerm_network_interface" "main" {
-    count               =  var.vm_number
+    count               =  var.count
     name                = "${var.prefix}-nic-${count.index}"
     resource_group_name = azurerm_resource_group.Azuredevops.name
     location            = azurerm_resource_group.Azuredevops.location
@@ -149,7 +149,7 @@ resource "azurerm_network_interface" "main" {
 }
 
 resource "azurerm_network_interface_backend_address_pool_association" "main" {
-    count               =  var.vm_number
+    count               =  var.count
 
     network_interface_id    = element(azurerm_network_interface.main[*].id, count.index)
     ip_configuration_name   = azurerm_network_interface.main[count.index].ip_configuration[0].name
@@ -176,7 +176,7 @@ data "azurerm_image" "main" {
 
 # VMs and managed disk
 resource "azurerm_linux_virtual_machine" "main" {
-    count = var.vm_number
+    count = var.count
     name                            = "${var.prefix}-vm-${count.index}"
     resource_group_name             = azurerm_resource_group.Azuredevops.name
     location                        = azurerm_resource_group.Azuredevops.location

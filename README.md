@@ -79,6 +79,7 @@ terraform import azurerm_resource_group.Azuredevops /subscriptions/<subscription
 
 9. **(OPTIONAL)** To customize your deployment, you can modify the default values of variables within the `variables.tf` file. This allows you to tailor specific parameters to your preferences. Variables you can adjust include:
 
+- `count`: To set the number of Virtual Machines to be created.
 - `location`: To set the desired location for your Azure resources.
 - `password`: To specify the password for the Virtual Machines.
 - `username`: To specify the username for the Virtual Machines.
@@ -87,7 +88,7 @@ terraform import azurerm_resource_group.Azuredevops /subscriptions/<subscription
 ```sh
 terraform plan -out solution.plan
 ```
-11. Input the `prefix` as it will be requested by the CLI, which should be used for all resources in this example, and a `vm_number`, which represents the number of Virtual Machines to be created.
+11. Input the `prefix` as it will be requested by the CLI, which should be used for all resources in this example.
 
 12. Create the web server infrastructure by running the command:
 ```sh

@@ -10,8 +10,9 @@ variable "location" {
   default = "West Europe"
 }
 
-variable "vm_number" {
+variable "count" {
   description = "The number of Virtual Machines to create"
+  defualt = 2
 }
 
 variable "username" {
