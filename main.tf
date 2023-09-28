@@ -7,8 +7,8 @@ provider "azurerm" {
 
 # Create the Resource group
 resource "azurerm_resource_group" "Azuredevops" {
-    name     = "${var.prefix}-rg"
-    location = var.location
+    name     = "Azuredevops"
+    location = "westeurope"
 
     tags     = {
         application = "webserver"
